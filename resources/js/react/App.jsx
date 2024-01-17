@@ -1,14 +1,44 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
+import Header from "./modules/Header";
+import Footer from "./modules/Footer";
+import { Routes, Route, useLocation } from "react-router-dom";
+import Home from "./pages/Home";
+import Thanks from "./pages/Thanks";
+import Aviso from "./pages/Aviso";
+import ScrollToTop from "./components/ScrollToTop";
+import "./css/tailwind.css";
 
-import Web from "./Web";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+function App() {
+	const location = useLocation();
 
-const root = createRoot(document.getElementById("root"));
-root.render(
-    <BrowserRouter>
-        <Routes>
-            <Route path="/*" element={<Web />} />
-        </Routes>
-    </BrowserRouter>
-);
+	return (
+		<>
+			<main>
+				<ScrollToTop />
+				<Routes location={location} key={location.pathname}>
+					<Route
+						index
+						element={
+							<>
+								<Header />
+								<Home />
+							</>
+						}
+					></Route>
+					<Route path="/thanks" element={<Thanks />}></Route>
+					<Route
+						path="/politicas-privacidad"
+						element={
+							<>
+								<Header themeCrema={false} />
+								<Aviso />
+							</>
+						}
+					></Route>
+				</Routes>
+			</main>
+			<Footer />
+		</>
+	);
+}
+
+export default App;

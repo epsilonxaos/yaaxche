@@ -26,7 +26,7 @@ export default defineConfig(({ command, mode }) => {
                     "resources/css/app.css",
                     "resources/css/panel/app.css",
                     "resources/js/app.js",
-                    "resources/js/react/App.jsx",
+                    "resources/js/react/main.jsx",
                     "resources/js/panel/trumbowygInit.js",
                 ],
                 refresh: true,

@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-paragraph {
+	@apply font-mark text-base md:text-lg;
+}
+
+.title-v1 {
+	@apply font-tranja text-lg md:text-[22px] font-bold uppercase;
+}
+.title-v2 {
+	@apply font-tranja text-sm md:text-lg font-bold uppercase;
+}

@@ -29,7 +29,7 @@
     <meta property="og:image" content="{{ asset('img/fb.jpg') }}" /> --}}
 
     @viteReactRefresh
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/react/App.jsx'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/react/main.jsx'])
 </head>
 
 <body class="antialiased bg-white">
