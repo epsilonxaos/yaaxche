@@ -3,12 +3,47 @@
 @tailwind utilities;
 
 .text-paragraph {
-	@apply font-mark text-base md:text-lg;
+    @apply font-mark text-base md:text-lg;
 }
 
 .title-v1 {
-	@apply font-tranja text-lg md:text-[22px] font-bold uppercase;
+    @apply font-tranja text-lg md:text-[22px] font-bold uppercase;
 }
 .title-v2 {
-	@apply font-tranja text-sm md:text-lg font-bold uppercase;
+    @apply font-tranja text-sm md:text-lg font-bold uppercase;
+}
+
+.tippy-content {
+    padding: 0 !important;
+}
+
+.tippy-arrow {
+    color: white;
+}
+
+.st3 {
+    fill: #cecece;
+    cursor: pointer;
+}
+
+.st3.vendido {
+    fill: #bd0000a1;
+    cursor: auto;
+}
+.st3.apartado {
+    fill: #bd9a009a;
+    cursor: auto;
+}
+.st3.disponible {
+    fill: #0b952d86;
+}
+
+.vendido {
+    background-color: #bd0000;
+}
+.apartado {
+    background-color: #bd9a00;
+}
+.disponible {
+    background-color: #0b952d;
 }

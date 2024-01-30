@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ComandosController;
+use App\Http\Controllers\LotificacionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/artisan', [ComandosController::class, 'executeComands']);
 Route::view('/', 'layouts.app')->where('path', '.*');
 
 Route::get('/dashboard', function () {
@@ -63,6 +66,13 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 		Route::patch('/update/{id?}', [AdminController::class, 'updateProfile'])->name('panel.usuarios.update');
 		Route::put('/update/{id?}/password', [AdminController::class, 'updateProfilePassword'])->name('panel.usuarios.update.password');
 		Route::delete('/destroy/{id?}', [AdminController::class, 'destroyProfile'])->name('panel.usuarios.destroy');
+	});
+
+	// Lotificacion
+	Route::prefix('/lotificacion')->group(function () {
+		Route::get('/', [LotificacionController::class, 'index'])->name('panel.lotificacion.index');
+		Route::put('update', [LotificacionController::class, 'update'])->name('panel.lotificacion.update');
+		Route::put('update/status', [LotificacionController::class, 'updateStatus'])->name('panel.lotificacion.updateStatus');
 	});
 });
 
