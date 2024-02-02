@@ -38,6 +38,9 @@ export default function Lotificacion() {
             if (lt.id <= 9) dom = document.querySelector(`#lote0${lt.id} .st3`);
             else dom = document.querySelector(`#lote${lt.id} .st3`);
 
+            const as = () =>
+                handleLote(document.querySelector(`#lote0${lt.id}`));
+
             if (dom) {
                 if (lt.status == 1) dom.classList.add("disponible");
                 else if (lt.status == 2) dom.classList.add("apartado");
@@ -67,7 +70,7 @@ export default function Lotificacion() {
                             : lt.status == 2
                             ? "apartado"
                             : "vendido"
-                    } h-[125px] w-3 "></div>
+                    } h-[105px] w-3 "></div>
 					<div class="p-3 font-mark text-verde">
 						<h4 class="font-bold font-tranja">
 							Lote #${lt.lote}
@@ -78,7 +81,7 @@ export default function Lotificacion() {
 						<p class="text-sm">
 							${lt.m2} m<sup>2</sup>
 						</p>
-						<p class="text-sm mb-2 ">${
+						<p class="text-sm ">${
                             lt.status == 1
                                 ? "Disponible"
                                 : lt.status == 2
@@ -86,19 +89,14 @@ export default function Lotificacion() {
                                 : "Vendido"
                         }</p>
 
-						${
-                            lt.status == 1
-                                ? `<button onClick="${() => {
-                                      selectLote(lt.id);
-                                  }}" class='bg-crema w-full py-1 text-center'>Cotizar</button>`
-                                : ""
-                        }
 					</div>
 				</div>`,
                 });
             }
         });
     }, [datos]);
+
+    if (!datos) return;
 
     return (
         <>
@@ -168,13 +166,6 @@ export default function Lotificacion() {
                     </p>
                 </div>
             </section>
-            <div className="text-center bg-crema py-8">
-                <Link to={"/#contacto"}>
-                    <Button className="mb-4 md:mb-0" theme={"verde"}>
-                        Solicitar cotización
-                    </Button>
-                </Link>
-            </div>
         </>
     );
 }

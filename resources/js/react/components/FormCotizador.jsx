@@ -3,10 +3,12 @@ import lotesData from "../data/lotes.json";
 import plazosData from "../data/plazos.json";
 import { formatearNumero } from "../utils/helpers";
 import AppContext from "../context/AppContext";
+import { Link, redirect, useNavigate } from "react-router-dom";
+import Button from "./Button";
 
 export default function FormCotizador() {
-    const { datos } = useContext(AppContext);
-    const lotesJson = useMemo(() => datos, [datos]);
+    const context = useContext(AppContext);
+    const lotesJson = useMemo(() => context.datos, [context.datos]);
     const plazosJson = useMemo(() => plazosData, [plazosData]);
     const plazosKey = {
         18: "precio18",
@@ -24,6 +26,8 @@ export default function FormCotizador() {
         montoDiferir: "",
     });
 
+    const navigate = useNavigate();
+
     function calcularResultados() {
         const currentLote = lotesJson[lote];
         const currentPlazo = plazosKey[plazo];
@@ -38,11 +42,23 @@ export default function FormCotizador() {
     }
 
     useEffect(() => {
+        console.log({ lote });
         if (lote && plazo) calcularResultados();
     }, [lote, plazo]);
 
+    useEffect(() => {
+        if (context.lote) {
+            const index = context.datos.findIndex(
+                ({ lote }) => lote === context.lote
+            );
+            if (index >= 0) {
+                setLote(index);
+                navigate("/#cotizador");
+            }
+        }
+    }, [context.lote]);
     return (
-        <div className="relative">
+        <div className="relative" id="formCotizador">
             <form
                 action=""
                 className="flex flex-col md:flex-row md:flex-wrap text-paragraph md:text-sm lg:text-lg bg-crema max-w-[1100px] md:w-[90%] px-[25px] lg:px-[80px] py-[50px] md:mx-auto md:absolute md:left-0 md:right-0 md:-top-[50px] lg:-top-[170px]"
@@ -56,6 +72,7 @@ export default function FormCotizador() {
                         onChange={(ev) => setLote(ev.target.value)}
                         name="lote"
                         id="lote"
+                        value={lote}
                         className="bg-verde appearance-none px-5 uppercase text-crema select w-full h-[70px] mb-1"
                     >
                         <option value="">Selecciona tu lote</option>
@@ -139,6 +156,14 @@ export default function FormCotizador() {
                     >
                         Mensualidades
                     </label>
+                </div>
+
+                <div className="text-center bg-crema w-full">
+                    <Link to={"/#contacto"}>
+                        <Button className="mb-4 md:mb-0" theme={"verde"}>
+                            Solicitar cotización
+                        </Button>
+                    </Link>
                 </div>
             </form>
         </div>
