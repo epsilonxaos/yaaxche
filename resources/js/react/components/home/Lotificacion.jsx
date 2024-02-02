@@ -1,6 +1,7 @@
 import cover from "../../assets/lotificacion/cover.jpg";
 import BtnVideollamada from "../BtnVideollamada";
 import masterplan from "../../assets/lotificacion/masterplan.jpg";
+import masterplan2 from "../../assets/lotificacion/masterplan2.jpg";
 import { Masterplan } from "../Assets";
 import { forwardRef, useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
@@ -76,7 +77,7 @@ export default function Lotificacion() {
 							Lote #${lt.lote}
 						</h4>
 						<p class="text-sm">
-							${formatearComoMoneda(lt.precio)} MXN
+							${formatearComoMoneda(lt.precio12)} MXN
 						</p>
 						<p class="text-sm">
 							${lt.m2} m<sup>2</sup>
@@ -122,7 +123,7 @@ export default function Lotificacion() {
                 <div
                     id="masterplan"
                     className="bg-contain bg-center bg-no-repeat relative"
-                    style={{ backgroundImage: `url(${masterplan})` }}
+                    style={{ backgroundImage: `url(${masterplan2})` }}
                 >
                     <Masterplan />
                 </div>
