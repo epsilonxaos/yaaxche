@@ -21,7 +21,7 @@ function Banner() {
                     Rodeada de historia y cultura
                 </p>
                 <span className="text-paragraph lg:text-xl uppercase text-crema bg-verde inline-flex px-4 py-3 md:absolute md:-bottom-[25px] md:left-1/2 md:-translate-x-1/2">
-                    desde $1,768,000
+                    desde $1,870,000
                 </span>
             </article>
         </section>

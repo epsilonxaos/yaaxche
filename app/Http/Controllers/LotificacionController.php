@@ -68,6 +68,9 @@ class LotificacionController extends Controller
 		$up->precio = floatval(str_replace(",", "", $request->precio));
 		$up->precio12 = floatval(str_replace(",", "", $request->precio12));
 		$up->precio18 = floatval(str_replace(",", "", $request->precio18));
+		$up->frente = $request->frente;
+		$up->fondo = $request->fondo;
+		$up->m2 = $request->m2;
 		$up->save();
 
 		return redirect()->back()->with('success', 'El <span class="font-bold">lote #' . $up->lote . '</span> se acutalizo correctamente ');

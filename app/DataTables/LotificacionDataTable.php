@@ -26,11 +26,31 @@ class LotificacionDataTable extends DataTable
 			->addColumn('lote', function (Lotificacion $item) {
 				return "Lote #" . $item->lote;
 			})
-			->filter(function ($query) {
-				if (request()->has('lote')) {
-					$query->where('lote', 'like', "%" . request('lote') . "%");
-				}
-			}, true)
+			// ->filterColumn('lote', function ($query, $keyword) {
+			// 	// En este punto, $query es la instancia de la consulta de Eloquent
+			// 	// y $keyword es el valor de búsqueda ingresado por el usuario.
+
+			// 	// Aquí debes personalizar la lógica de búsqueda para tu columna 'lote'.
+			// 	// Por ejemplo, si el usuario busca 'Lote #123', deberías extraer el número '123'
+			// 	// y buscar en la columna 'lote' de tu base de datos.
+			// 	if (request()->has('lote')) {
+			// 		$query->whereRaw("CONVERT(lote USING utf8) LIKE ?", ["%$keyword%"]);
+			// 	}
+			// })
+			// ->filter(function ($query) {
+			// 	if (request()->has('lote')) {
+			// 		$query->where('lote', 'like', "%" . request('lote') . "%");
+			// 	}
+			// }, true)
+			->addColumn('frente', function (Lotificacion $item) {
+				return $item->frente;
+			})
+			->addColumn('fondo', function (Lotificacion $item) {
+				return $item->fondo;
+			})
+			->addColumn('m2', function (Lotificacion $item) {
+				return $item->m2;
+			})
 			->addColumn('acciones', function (Lotificacion $item) {
 
 				$acciones = '<div class="flex items-start justify-center mx-auto" style="min-width: 100px">';
@@ -89,7 +109,7 @@ class LotificacionDataTable extends DataTable
 
 				return $status;
 			})
-			->rawColumns(['acciones', 'status']);
+			->rawColumns(['acciones', 'm2', 'status']);
 	}
 
 	/**
@@ -137,6 +157,9 @@ class LotificacionDataTable extends DataTable
 		return [
 			Column::make('id'),
 			Column::make('lote')->searchable(true)->title('# Lote'),
+			Column::make('frente')->searchable(false)->title('Frente (m)'),
+			Column::make('fondo')->searchable(false)->title('Fondo (m)'),
+			Column::make('m2')->searchable(false)->title('M2'),
 			Column::computed('acciones')->title('Acciones')
 				->exportable(false)
 				->printable(false)

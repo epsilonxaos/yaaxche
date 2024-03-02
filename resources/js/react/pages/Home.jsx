@@ -12,22 +12,8 @@ import axios from "axios";
 import AppContext from "../context/AppContext";
 
 export default function Home() {
-    const [datos, setDatos] = useState([]);
-    const [lote, setLote] = useState({});
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await axios.get(
-                import.meta.env.VITE_APP_URL + "api/lotificacion"
-            );
-
-            setDatos(response.data);
-        }
-        fetchData();
-    }, []);
-
     return (
-        <AppContext.Provider value={{ datos, lote, setLote }}>
+        <>
             <Banner />
             <Introduccion />
             <Brochure />
@@ -37,6 +23,6 @@ export default function Home() {
             <Cotizador />
             <Maps />
             <Contacto />
-        </AppContext.Provider>
+        </>
     );
 }

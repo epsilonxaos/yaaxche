@@ -89,6 +89,24 @@
                                 <input type="text" id="precio18" name="precio18"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
+                            <div class="mb-5">
+                                <label for="frente"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Frente</label>
+                                <input type="text" id="frente" name="frente"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+                            <div class="mb-5">
+                                <label for="fondo"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fondo</label>
+                                <input type="text" id="fondo" name="fondo"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+                            <div class="mb-5">
+                                <label for="m2"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">M<sup>2</sup></label>
+                                <input type="text" id="m2" name="m2"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
                         </form>
                     </div>
                     <!-- Modal footer -->
@@ -149,6 +167,9 @@
             precio.unmaskedValue = data.precio.toString();
             precio12.unmaskedValue = data.precio12.toString();
             precio18.unmaskedValue = data.precio18.toString();
+            document.getElementById('frente').value = data.frente
+            document.getElementById('fondo').value = data.fondo
+            document.getElementById('m2').value = data.m2
 
             modal.show();
         }
@@ -162,7 +183,6 @@
 
             let p18 = document.getElementById('precio18')
             var numero = parseFloat(p18.value.replace(/,/g, ''));
-            console.log(numero);
         }
     </script>
 @endpush

@@ -9,17 +9,18 @@ export default defineConfig(({ command, mode }) => {
     const isProduction = mode === "production";
 
     return {
-        server: isProduction
-            ? false
-            : {
-                  host,
-                  port: 5174,
-                  hmr: { host },
-                  https: {
-                      key: readFileSync(env.SERVER_HTTPS_KEY),
-                      cert: readFileSync(env.SERVER_HTTPS_CERT),
+        server:
+            mode == "production"
+                ? false
+                : {
+                      host,
+                      port: 5174,
+                      hmr: { host },
+                      https: {
+                          key: readFileSync(env.SERVER_HTTPS_KEY),
+                          cert: readFileSync(env.SERVER_HTTPS_CERT),
+                      },
                   },
-              },
         plugins: [
             laravel({
                 input: [

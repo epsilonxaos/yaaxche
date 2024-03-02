@@ -50,7 +50,7 @@ export default function Cotizador() {
                     Financiamiento directo con nosotros
                 </h3>
                 <p className="bg-crema text-paragraph py-2 md:py-3 px-5 md:px-8 max-w-[200px] md:max-w-max leading-tight mx-auto text-base uppercase text-verde mb-8 md:mb-12">
-                    Precios desde <span>$1,768,000</span>
+                    Precios desde <span>$1,870,000</span>
                 </p>
 
                 <div className="flex flex-col md:flex-row md:mb-[50px] md:max-w-[950px] md:mx-auto">

@@ -1,14 +1,9 @@
-import cover from "../../assets/lotificacion/cover.jpg";
 import BtnVideollamada from "../BtnVideollamada";
 import masterplan from "../../assets/lotificacion/masterplan.jpg";
-import masterplan2 from "../../assets/lotificacion/masterplan2.jpg";
 import { Masterplan } from "../Assets";
-import { forwardRef, useContext, useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
-import Button from "../Button";
-import { Link } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 
 function formatearComoMoneda(valor) {
@@ -38,9 +33,6 @@ export default function Lotificacion() {
             let dom = null;
             if (lt.id <= 9) dom = document.querySelector(`#lote0${lt.id} .st3`);
             else dom = document.querySelector(`#lote${lt.id} .st3`);
-
-            const as = () =>
-                handleLote(document.querySelector(`#lote0${lt.id}`));
 
             if (dom) {
                 if (lt.status == 1) dom.classList.add("disponible");
@@ -123,7 +115,7 @@ export default function Lotificacion() {
                 <div
                     id="masterplan"
                     className="bg-contain bg-center bg-no-repeat relative"
-                    style={{ backgroundImage: `url(${masterplan2})` }}
+                    style={{ backgroundImage: `url(${masterplan})` }}
                 >
                     <Masterplan />
                 </div>
