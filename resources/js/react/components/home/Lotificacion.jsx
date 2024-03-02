@@ -163,10 +163,6 @@ export default function Lotificacion() {
     );
 }
 
-function Test() {
-    return <div>Hola</div>;
-}
-
 function ListLoti({ icon, title }) {
     return (
         <li className="mb-1 max-w-max lg:mr-2 lg:text-xs lg:mb-0">

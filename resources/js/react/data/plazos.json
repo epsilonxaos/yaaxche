@@ -1,22 +1,22 @@
 [
-	{
-		"active": false,
-		"plazo": 36,
-		"title": "36 Mensualidades"
-	},
-	{
-		"active": true,
-		"plazo": 18,
-		"title": "18 Mensualidades"
-	},
-	{
-		"active": true,
-		"plazo": 12,
-		"title": "12 Mensualidades"
-	},
-	{
-		"active": false,
-		"plazo": "contado",
-		"title": "Contado"
-	}
+    {
+        "active": false,
+        "plazo": 36,
+        "title": "36 Mensualidades"
+    },
+    {
+        "active": false,
+        "plazo": 18,
+        "title": "18 Mensualidades"
+    },
+    {
+        "active": true,
+        "plazo": 12,
+        "title": "12 Mensualidades"
+    },
+    {
+        "active": false,
+        "plazo": "contado",
+        "title": "Contado"
+    }
 ]
