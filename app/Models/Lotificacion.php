@@ -7,19 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lotificacion extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
 	protected $table = 'lotificacions';
 	protected $primaryKey = 'id';
 	protected $fillable = [
-		'fondo',
-		'frente',
+		'etapa',
 		'lote',
+		'vista',
+		'frente',
+		'fondo',
 		'm2',
-		'precio',
-		'precio12',
-		'precio18',
-		'precio36',
+		'precio_total',
 		'status',
+		'enganche',
+		'precio_48',
+		'precio_36',
+		'precio_24',
+		'precio_12',
+		'precio_6',
+		'contado',
+		'apartado',
 	];
 }
