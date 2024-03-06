@@ -11,20 +11,22 @@
             Modulos
         </h3>
         <ul class="pt-1 mt-1 space-y-2 mb-5 font-medium border-t border-gray-200 dark:border-gray-700">
-            <li>
-                <a href="{{ route('panel.masterplan.index') }}"
-                    class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group {{ request()->is('admin/lotificacion*') ? 'bg-gray-100' : '' }}">
+            @can(PermissionKey::Masterplan['permissions']['index']['name'])
+                <li>
+                    <a href="{{ route('panel.masterplan.index') }}"
+                        class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group {{ request()->is('admin/lotificacion*') ? 'bg-gray-100' : '' }}">
 
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
-                    </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                        </svg>
 
-                    <span class="ml-4">Masterplan</span>
-                </a>
-            </li>
+                        <span class="ml-4">Masterplan</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
         {{-- * usuarios y permisos --}}
         @canany([PermissionKey::Admin['permissions']['index']['name'],

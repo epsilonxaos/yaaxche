@@ -120,7 +120,6 @@ class RoleController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		$arr = $request->toArray();
 		$role = Role::find($id);
 		//Acutalizamos el nombre
 		$role->update(['name' => $request->name]);
@@ -130,6 +129,7 @@ class RoleController extends Controller
 		foreach ($request->permission as $key => $value) {
 			$role->givePermissionTo($key);
 		}
+		// dd('haciendo');
 		return redirect()->route('panel.roles.edit', ['id' => $role->id])->with('success', 'Los datos se han actualizado correctamente');
 	}
 

@@ -75,4 +75,22 @@ class PermissionKey extends ServiceProvider
 			],
 		]
 	];
+
+	const Masterplan = [
+		'name' => 'Módulo masterplan',
+		'permissions' => [
+			'index' => [
+				'display_name' => 'Ver módulo',
+				'name' => 'masterplan.index'
+			],
+			'status' => [
+				'display_name' => 'Actualizar estados',
+				'name' => 'masterplan.create'
+			],
+			'update' => [
+				'display_name' => 'Modificar',
+				'name' => 'masterplan.edit'
+			],
+		]
+	];
 }
