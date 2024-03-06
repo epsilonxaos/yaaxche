@@ -1,4 +1,4 @@
-export default function Masterplan() {
+export default function MasterplanMovil() {
     return (
         <svg
             className="absolute top-0 left-0"

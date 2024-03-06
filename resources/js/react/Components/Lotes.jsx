@@ -29,61 +29,63 @@ export const Lotes = () => {
 
     useEffect(() => {
         datos.forEach((lt) => {
-            let dom = document.querySelector(`#lote${lt.lote} .st0`);
+            let dom = document.querySelectorAll(`.lote${lt.lote} .st0`);
 
             if (dom) {
-                if (lt.status == 1) dom.classList.add("disponible");
-                else if (lt.status == 2) dom.classList.add("apartado");
-                else dom.classList.add("vendido");
+                dom.forEach((el) => {
+                    if (lt.status == 1) el.classList.add("disponible");
+                    else if (lt.status == 2) el.classList.add("apartado");
+                    else el.classList.add("vendido");
+
+                    tippy(el, {
+                        aria: null,
+                        // trigger: "click",
+                        // Important: the tooltip should be DIRECTLY after the reference element
+                        // in the DOM source order, which is why it has its own wrapper element
+                        appendTo: document.getElementById("masterplan"),
+                        // Let the user know the dropdown has been expanded using these lifecycle
+                        // functions
+                        onMount({ reference }) {
+                            reference.setAttribute("aria-expanded", "true");
+                        },
+                        onHide({ reference }) {
+                            reference.setAttribute("aria-expanded", "false");
+                        },
+                        interactive: true,
+                        allowHTML: true,
+                        content: `<div
+						class="shadow-sm bg-white pr-3 pl-0 flex"
+					>
+						<div class="${
+                            lt.status == 1
+                                ? "disponible"
+                                : lt.status == 2
+                                ? "apartado"
+                                : "vendido"
+                        } h-[105px] w-3 "></div>
+						<div class="px-3 py-1 font-mark text-verde">
+							<h5 class="font-bold">
+								Lote #${lt.lote}
+							</h5>
+							<p class="text-sm mb-0">
+								${formatearComoMoneda(lt.precio_6)} MXN
+							</p>
+							<p class="text-sm mb-0">
+								${lt.m2} m<sup>2</sup>
+							</p>
+							<p class="text-sm  mb-0">${
+                                lt.status == 1
+                                    ? "Disponible"
+                                    : lt.status == 2
+                                    ? "Apartado"
+                                    : "Vendido"
+                            }</p>
+		
+						</div>
+					</div>`,
+                    });
+                });
             }
-
-            tippy(dom, {
-                aria: null,
-                // trigger: "click",
-                // Important: the tooltip should be DIRECTLY after the reference element
-                // in the DOM source order, which is why it has its own wrapper element
-                appendTo: document.getElementById("masterplan"),
-                // Let the user know the dropdown has been expanded using these lifecycle
-                // functions
-                onMount({ reference }) {
-                    reference.setAttribute("aria-expanded", "true");
-                },
-                onHide({ reference }) {
-                    reference.setAttribute("aria-expanded", "false");
-                },
-                interactive: true,
-                allowHTML: true,
-                content: `<div
-				class="shadow-sm bg-white pr-3 pl-0 flex"
-			>
-				<div class="${
-                    lt.status == 1
-                        ? "disponible"
-                        : lt.status == 2
-                        ? "apartado"
-                        : "vendido"
-                } h-[105px] w-3 "></div>
-				<div class="px-3 py-1 font-mark text-verde">
-					<h5 class="font-bold">
-						Lote #${lt.lote}
-					</h5>
-					<p class="text-sm mb-0">
-						${formatearComoMoneda(lt.precio_6)} MXN
-					</p>
-					<p class="text-sm mb-0">
-						${lt.m2} m<sup>2</sup>
-					</p>
-					<p class="text-sm  mb-0">${
-                        lt.status == 1
-                            ? "Disponible"
-                            : lt.status == 2
-                            ? "Apartado"
-                            : "Vendido"
-                    }</p>
-
-				</div>
-			</div>`,
-            });
         });
     }, [datos]);
 
