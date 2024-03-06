@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Select from "react-select";
 import data from "../data.json";
+import AppContext from "../context/AppContext";
+import { formatearComoMoneda } from "./Lotes";
 
 export const Cotizador = () => {
     const [selectedLote, setSelectedLote] = useState(null);
     const [selectedMensualidad, setSelectedMensualidad] = useState(null);
+    const [dataLote, setDataLote] = useState([]);
+    const { datos } = useContext(AppContext);
 
     const [enganche, setEnganche] = useState(0);
     const [mensualidades, setMensualidades] = useState(0);
@@ -31,6 +35,24 @@ export const Cotizador = () => {
             setMensualidades(0);
         }
     }, [selectedLote, selectedMensualidad]);
+
+    useEffect(() => {
+        if (datos.length) {
+            const loteFormatted = [];
+            datos.forEach((lote) => {
+                if (lote.status == 1) {
+                    loteFormatted.push({
+                        value: lote.precio_total,
+                        label: `Lote #${lote.lote} - ${formatearComoMoneda(
+                            lote.precio_total
+                        )}`,
+                    });
+                }
+            });
+
+            setDataLote(loteFormatted);
+        }
+    }, [datos]);
 
     const customStyles = {
         option: (defaultStyles, state) => ({
@@ -72,7 +94,7 @@ export const Cotizador = () => {
                         <div className="col-xs-10 col-sm-10 col-md-5 col-lg-5">
                             <label>Lotes</label>
                             <Select
-                                options={data.lotes}
+                                options={dataLote}
                                 onChange={handleLoteChange}
                                 styles={customStyles}
                                 placeholder="Elija un lote a cotizar"
@@ -83,7 +105,7 @@ export const Cotizador = () => {
                             <input
                                 type="text"
                                 readOnly
-                                value={`${enganche}`}
+                                value={`${formatearComoMoneda(enganche)}`}
                                 placeholder="15% Enganche"
                             />
                         </div>
@@ -101,7 +123,7 @@ export const Cotizador = () => {
                             <input
                                 type="text"
                                 readOnly
-                                value={`${mensualidades}`}
+                                value={`${formatearComoMoneda(mensualidades)}`}
                                 placeholder="Mensualidades"
                             />
                         </div>

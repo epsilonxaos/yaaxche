@@ -5,7 +5,7 @@ import AppContext from "../context/AppContext";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 
-function formatearComoMoneda(valor) {
+export function formatearComoMoneda(valor) {
     // Verificar si el valor es una cadena, si es así, convertirlo a número
     if (typeof valor === "string") {
         valor = parseFloat(valor);
@@ -68,7 +68,7 @@ export const Lotes = () => {
 								Lote #${lt.lote}
 							</h5>
 							<p class="text-sm mb-0">
-								${formatearComoMoneda(lt.precio_6)} MXN
+								${formatearComoMoneda(lt.precio_total)} MXN
 							</p>
 							<p class="text-sm mb-0">
 								${lt.m2} m<sup>2</sup>
