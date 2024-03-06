@@ -39,6 +39,13 @@
         }
     </style>
     @stack('style')
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+
+
 </head>
 
 <body class="font-sans text-gray-900 bg-slate-100 antialiased">
@@ -57,6 +64,8 @@
         </div>
     </div>
 
+
+    @livewireScripts
     <script src="{{ asset('plugins/sweetalert/sweetalert2@11.js') }}"></script>
 
     <script>
@@ -83,7 +92,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     {{-- <script src="{{ asset('js/panel/app.js') }}"></script> --}}
     @vite(['resources/js/panel/trumbowygInit.js'])
+    @livewireStyles
     @stack('script')
+
 </body>
 
 </html>

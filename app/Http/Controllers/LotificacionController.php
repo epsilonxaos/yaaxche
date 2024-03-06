@@ -8,6 +8,21 @@ use Illuminate\Http\Request;
 
 class LotificacionController extends Controller
 {
+
+	public function masterplan()
+	{
+
+		return view('panel.masterplan.masterplan', [
+			"title" => "Masterplan",
+			"breadcrumb" => [
+				[
+					'title' => 'Masterplan',
+					'active' => true
+				]
+			]
+		]);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 */

@@ -77,6 +77,10 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 		Route::put('update', [LotificacionController::class, 'update'])->name('panel.lotificacion.update');
 		Route::put('update/status', [LotificacionController::class, 'updateStatus'])->name('panel.lotificacion.updateStatus');
 	});
+
+	Route::prefix('/masterplan')->group(function () {
+		Route::get('/', [LotificacionController::class, 'masterplan'])->name('panel.masterplan.index');
+	});
 });
 
 require __DIR__ . '/auth.php';

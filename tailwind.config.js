@@ -9,6 +9,7 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./resources/**/*.{js,ts,jsx,tsx}",
         "./node_modules/flowbite/**/*.js",
+        "./vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php",
     ],
     darkMode: "class", // or 'class'
     theme: {
