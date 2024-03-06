@@ -4,6 +4,7 @@ import AppContext from "../context/AppContext";
 
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
+import MasterplanMovil from "./MasterplanMovil";
 
 export function formatearComoMoneda(valor) {
     // Verificar si el valor es una cadena, si es así, convertirlo a número
@@ -36,64 +37,145 @@ export const Lotes = () => {
                     if (lt.status == 1) el.classList.add("disponible");
                     else if (lt.status == 2) el.classList.add("apartado");
                     else el.classList.add("vendido");
+                });
+            }
+        });
 
-                    tippy(el, {
-                        aria: null,
-                        // trigger: "click",
-                        // Important: the tooltip should be DIRECTLY after the reference element
-                        // in the DOM source order, which is why it has its own wrapper element
-                        appendTo: document.getElementById("masterplan"),
-                        // Let the user know the dropdown has been expanded using these lifecycle
-                        // functions
-                        onMount({ reference }) {
-                            reference.setAttribute("aria-expanded", "true");
-                        },
-                        onHide({ reference }) {
-                            reference.setAttribute("aria-expanded", "false");
-                        },
-                        interactive: true,
-                        allowHTML: true,
-                        content: `<div
-						class="shadow-sm bg-white pr-3 pl-0 flex"
-					>
-						<div class="${
+        datos.forEach((lt) => {
+            let dom = document.querySelector(
+                `#masterplan .lote${lt.lote} .st0`
+            );
+
+            if (dom) {
+                if (lt.status == 1) dom.classList.add("disponible");
+                else if (lt.status == 2) dom.classList.add("apartado");
+                else dom.classList.add("vendido");
+
+                tippy(dom, {
+                    aria: null,
+                    // trigger: "click",
+                    // Important: the tooltip should be DIRECTLY after the reference element
+                    // in the DOM source order, which is why it has its own wrapper element
+                    appendTo: document.getElementById("masterplan"),
+                    // Let the user know the dropdown has been expanded using these lifecycle
+                    // functions
+                    onMount({ reference }) {
+                        reference.setAttribute("aria-expanded", "true");
+                    },
+                    onHide({ reference }) {
+                        reference.setAttribute("aria-expanded", "false");
+                    },
+                    interactive: true,
+                    allowHTML: true,
+                    content: `<div
+					class="shadow-sm bg-white pr-3 pl-0 flex"
+				>
+					<div class="${
+                        lt.status == 1
+                            ? "disponible"
+                            : lt.status == 2
+                            ? "apartado"
+                            : "vendido"
+                    } h-[105px] w-3 "></div>
+					<div class="px-3 py-1 font-mark text-verde">
+						<h5 class="font-bold">
+							Lote #${lt.lote}
+						</h5>
+						<p class="text-sm mb-0">
+							${formatearComoMoneda(lt.precio_total)} MXN
+						</p>
+						<p class="text-sm mb-0">
+							${lt.m2} m<sup>2</sup>
+						</p>
+						<p class="text-sm  mb-2">${
                             lt.status == 1
-                                ? "disponible"
+                                ? "Disponible"
                                 : lt.status == 2
-                                ? "apartado"
-                                : "vendido"
-                        } h-[105px] w-3 "></div>
-						<div class="px-3 py-1 font-mark text-verde">
-							<h5 class="font-bold">
-								Lote #${lt.lote}
-							</h5>
-							<p class="text-sm mb-0">
-								${formatearComoMoneda(lt.precio_total)} MXN
-							</p>
-							<p class="text-sm mb-0">
-								${lt.m2} m<sup>2</sup>
-							</p>
-							<p class="text-sm  mb-2">${
-                                lt.status == 1
-                                    ? "Disponible"
-                                    : lt.status == 2
-                                    ? "Apartado"
-                                    : "Vendido"
-                            }</p>
-							${
-                                lt.status == 1
-                                    ? `<button
-                                        class="bg-[#b68401] text-white py-1 px-2 w-full rounded-sm"
-                                        type="button"
-                                        onClick="changeCurrentLote(${lt.lote})"
-                                    >
-                                        Cotizar
-                                    </button>`
-                                    : ""
-                            }
-						</div>
-					</div>`,
-                    });
+                                ? "Apartado"
+                                : "Vendido"
+                        }</p>
+						${
+                            lt.status == 1
+                                ? `<button
+									class="bg-[#b68401] text-white py-1 px-2 w-full rounded-sm"
+									type="button"
+									onClick="changeCurrentLote(${lt.lote})"
+								>
+									Cotizar
+								</button>`
+                                : ""
+                        }
+					</div>
+				</div>`,
+                });
+            }
+        });
+        datos.forEach((lt) => {
+            let dom = document.querySelector(
+                `#masterplan2 .lote${lt.lote} .st0`
+            );
+
+            if (dom) {
+                if (lt.status == 1) dom.classList.add("disponible");
+                else if (lt.status == 2) dom.classList.add("apartado");
+                else dom.classList.add("vendido");
+
+                tippy(dom, {
+                    aria: null,
+                    // trigger: "click",
+                    // Important: the tooltip should be DIRECTLY after the reference element
+                    // in the DOM source order, which is why it has its own wrapper element
+                    appendTo: document.getElementById("masterplan2"),
+                    // Let the user know the dropdown has been expanded using these lifecycle
+                    // functions
+                    onMount({ reference }) {
+                        reference.setAttribute("aria-expanded", "true");
+                    },
+                    onHide({ reference }) {
+                        reference.setAttribute("aria-expanded", "false");
+                    },
+                    interactive: true,
+                    allowHTML: true,
+                    content: `<div
+					class="shadow-sm bg-white pr-3 pl-0 flex"
+				>
+					<div class="${
+                        lt.status == 1
+                            ? "disponible"
+                            : lt.status == 2
+                            ? "apartado"
+                            : "vendido"
+                    } h-[105px] w-3 "></div>
+					<div class="px-3 py-1 font-mark text-verde">
+						<h5 class="font-bold">
+							Lote #${lt.lote}
+						</h5>
+						<p class="text-sm mb-0">
+							${formatearComoMoneda(lt.precio_total)} MXN
+						</p>
+						<p class="text-sm mb-0">
+							${lt.m2} m<sup>2</sup>
+						</p>
+						<p class="text-sm  mb-2">${
+                            lt.status == 1
+                                ? "Disponible"
+                                : lt.status == 2
+                                ? "Apartado"
+                                : "Vendido"
+                        }</p>
+						${
+                            lt.status == 1
+                                ? `<button
+									class="bg-[#b68401] text-white py-1 px-2 w-full rounded-sm"
+									type="button"
+									onClick="changeCurrentLote(${lt.lote})"
+								>
+									Cotizar
+								</button>`
+                                : ""
+                        }
+					</div>
+				</div>`,
                 });
             }
         });
@@ -108,7 +190,7 @@ export const Lotes = () => {
 
     return (
         <div className="container-fluid lotes-container bg-[#374c1a] pb-0 md:pt-0">
-            <div className="info-container md:absolute md:z-10 flex items-center justify-center flex-col max-md:mx-auto max-md:mb-5 bg-transparent md:max-w-[360px] md:top-0 md:bottom-0 md:my-auto">
+            <div className="info-container absolute z-10 md:w-[80%] flex items-center justify-center flex-col max-md:mx-auto max-md:mb-5 bg-transparent md:max-w-[360px] max-md:pt-10 max-md:w-full md:top-0 md:bottom-0 md:my-auto">
                 <img src="/images/logo_cafe.svg" alt="" />
                 <h2>
                     Entrega <br />
@@ -121,13 +203,22 @@ export const Lotes = () => {
             </div>
 
             {/* Masterplan */}
-            <div className="relative" id="masterplan">
+            <div className="relative md:block hidden" id="masterplan">
                 <img
                     src="/images/masterplan.webp"
                     alt="masterplan"
                     className="w-full"
                 />
                 <Masterplan />
+            </div>
+
+            <div className="relative md:hidden" id="masterplan2">
+                <img
+                    src="/images/masterplanmovil.png"
+                    alt="masterplan"
+                    className="w-full"
+                />
+                <MasterplanMovil />
             </div>
         </div>
     );

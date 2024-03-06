@@ -294,7 +294,6 @@ h6 {
     padding: 0 !important;
 }
 .lotes-container div.info-container {
-    width: 80%;
     color: var(--beige);
 }
 .lotes-container div.info-container h2 {
@@ -665,7 +664,6 @@ h6 {
     }
     /*Lotes section*/
     .lotes-container div.info-container {
-        width: 80%;
         color: var(--beige);
         text-align: center;
     }
