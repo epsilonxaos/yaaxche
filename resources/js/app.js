@@ -9,3 +9,4 @@ window.Alpine = Alpine;
 Alpine.start();
 
 import.meta.glob(["../img/**"]);
+window.loteActual = null;

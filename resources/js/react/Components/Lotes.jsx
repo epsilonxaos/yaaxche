@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Masterplan from "./Masterplan";
 import AppContext from "../context/AppContext";
 
@@ -25,7 +25,7 @@ export function formatearComoMoneda(valor) {
 }
 
 export const Lotes = () => {
-    const { datos } = useContext(AppContext);
+    const { datos, setLote } = useContext(AppContext);
 
     useEffect(() => {
         datos.forEach((lt) => {
@@ -73,14 +73,24 @@ export const Lotes = () => {
 							<p class="text-sm mb-0">
 								${lt.m2} m<sup>2</sup>
 							</p>
-							<p class="text-sm  mb-0">${
+							<p class="text-sm  mb-2">${
                                 lt.status == 1
                                     ? "Disponible"
                                     : lt.status == 2
                                     ? "Apartado"
                                     : "Vendido"
                             }</p>
-		
+							${
+                                lt.status == 1
+                                    ? `<button
+                                        class="bg-[#b68401] text-white py-1 px-2 w-full rounded-sm"
+                                        type="button"
+                                        onClick="changeCurrentLote(${lt.lote})"
+                                    >
+                                        Cotizar
+                                    </button>`
+                                    : ""
+                            }
 						</div>
 					</div>`,
                     });
@@ -88,6 +98,13 @@ export const Lotes = () => {
             }
         });
     }, [datos]);
+
+    window.changeCurrentLote = (lote) => {
+        window.loteActual = lote;
+
+        console.log({ lote });
+        setLote(lote);
+    };
 
     return (
         <div className="container-fluid lotes-container bg-[#374c1a] pb-0 md:pt-0">

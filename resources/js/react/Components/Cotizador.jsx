@@ -3,16 +3,17 @@ import Select from "react-select";
 import data from "../data.json";
 import AppContext from "../context/AppContext";
 import { formatearComoMoneda } from "./Lotes";
+import { useNavigate } from "react-router-dom";
 
 export const Cotizador = () => {
     const [selectedLote, setSelectedLote] = useState(null);
     const [selectedMensualidad, setSelectedMensualidad] = useState(null);
     const [dataLote, setDataLote] = useState([]);
-    const { datos } = useContext(AppContext);
+    const { datos, lote } = useContext(AppContext);
 
     const [enganche, setEnganche] = useState(0);
     const [mensualidades, setMensualidades] = useState(0);
-
+    const navigate = useNavigate();
     const handleLoteChange = (selectedOption) => {
         setSelectedLote(selectedOption.value);
     };
@@ -23,10 +24,12 @@ export const Cotizador = () => {
 
     useEffect(() => {
         if (selectedLote != null && selectedMensualidad != null) {
-            setEnganche(selectedLote * 0.15);
+            const currentLote = datos.find((l) => l.lote == selectedLote);
+            setEnganche(currentLote.precio_total * 0.15);
             setMensualidades(
                 (
-                    (selectedLote - selectedLote * 0.15) /
+                    (currentLote.precio_total -
+                        currentLote.precio_total * 0.15) /
                     selectedMensualidad
                 ).toFixed(2)
             );
@@ -42,7 +45,7 @@ export const Cotizador = () => {
             datos.forEach((lote) => {
                 if (lote.status == 1) {
                     loteFormatted.push({
-                        value: lote.precio_total,
+                        value: lote.lote,
                         label: `Lote #${lote.lote} - ${formatearComoMoneda(
                             lote.precio_total
                         )}`,
@@ -53,6 +56,19 @@ export const Cotizador = () => {
             setDataLote(loteFormatted);
         }
     }, [datos]);
+
+    useEffect(() => {
+        if (lote) {
+            const currentLote = datos.find((l) => l.lote == lote);
+            setSelectedLote({
+                value: currentLote.lote,
+                label: `Lote #${currentLote.lote} - ${formatearComoMoneda(
+                    currentLote.precio_total
+                )}`,
+            });
+            navigate("/#cotizador");
+        }
+    }, [lote]);
 
     const customStyles = {
         option: (defaultStyles, state) => ({
@@ -71,7 +87,7 @@ export const Cotizador = () => {
         singleValue: (defaultStyles) => ({ ...defaultStyles, color: "#fff" }),
     };
     return (
-        <div className="container-fluid cotizador-container">
+        <div className="container-fluid cotizador-container" id="cotizador">
             <div className="overlay"></div>
             <div className="info-container">
                 <img src="/images/amenidades/4.svg" alt="" />
@@ -96,6 +112,7 @@ export const Cotizador = () => {
                             <Select
                                 options={dataLote}
                                 onChange={handleLoteChange}
+                                value={selectedLote}
                                 styles={customStyles}
                                 placeholder="Elija un lote a cotizar"
                             />

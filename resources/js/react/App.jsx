@@ -9,10 +9,11 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import ScrollToTop from "./Components/ScrollToTop";
 
 function App() {
     const [datos, setDatos] = useState([]);
-    const [lote, setLote] = useState({});
+    const [lote, setLote] = useState(0);
 
     useEffect(() => {
         async function fetchData() {
@@ -27,6 +28,7 @@ function App() {
 
     return (
         <AppContext.Provider value={{ datos, lote, setLote }}>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/enviado" element={<Enviado />} />
