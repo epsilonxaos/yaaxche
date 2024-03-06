@@ -1,6 +1,8 @@
 import { Enviado } from "./Pages/Enviado";
 import { Homepage } from "./Pages/Homepage";
 import { Route, Routes } from "react-router-dom";
+import AppContext from "./context/AppContext";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 // Bootstrap CSS
@@ -9,11 +11,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
+    const [datos, setDatos] = useState([]);
+    const [lote, setLote] = useState({});
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get(
+                import.meta.env.VITE_APP_URL + "api/lotificacion"
+            );
+
+            setDatos(response.data);
+        }
+        fetchData();
+    }, []);
+
     return (
-        <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/enviado" element={<Enviado />} />
-        </Routes>
+        <AppContext.Provider value={{ datos, lote, setLote }}>
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/enviado" element={<Enviado />} />
+            </Routes>
+        </AppContext.Provider>
     );
 }
 

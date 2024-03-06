@@ -290,15 +290,8 @@ h6 {
 /*Lotes section*/
 .lotes-container {
     border-top: 3px solid var(--main-gold);
-    height: 900px;
-    background-image: url("/images/masterplan.webp");
-    background-size: cover;
-    background-position: 60% center;
     position: relative;
     padding: 0 !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .lotes-container div.info-container {
     width: 80%;
@@ -671,13 +664,6 @@ h6 {
         margin-top: 2rem;
     }
     /*Lotes section*/
-    .lotes-container {
-        height: 100vh;
-        background-image: url("/images/mobile-map.webp");
-        background-position: center 70%;
-        align-items: flex-start;
-        padding: 2rem 0 !important;
-    }
     .lotes-container div.info-container {
         width: 80%;
         color: var(--beige);
@@ -698,9 +684,10 @@ h6 {
         width: 75vw;
     }
     .mapa-container img.tronco {
-        width: 25%;
+        width: 150px;
         position: absolute;
         top: -50px;
+        max-width: 350px;
     }
     /*Cotizador*/
     .cotizador-container div.cotizador {
@@ -726,4 +713,42 @@ h6 {
     .thanks-container .info-container {
         width: 100%;
     }
+}
+
+.tippy-content {
+    padding: 0 !important;
+}
+
+.tippy-arrow {
+    color: white;
+}
+
+.st0 {
+    fill: #cecece;
+}
+
+.st0.vendido {
+    fill: #bd0000a1;
+    cursor: auto;
+}
+.st0.apartado {
+    fill: #bd9a009a;
+    cursor: auto;
+}
+.st0.disponible {
+    fill: #0b952d86;
+    cursor: pointer;
+}
+.st0.area-verde {
+    fill: #0b3a17;
+}
+
+.vendido {
+    background-color: #bd0000;
+}
+.apartado {
+    background-color: #bd9a00;
+}
+.disponible {
+    background-color: #0b952d;
 }
