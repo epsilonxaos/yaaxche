@@ -19,10 +19,10 @@ export const Cotizador = () => {
 
     useEffect(() => {
         if (selectedLote != null && selectedMensualidad != null) {
-            setEnganche(selectedLote * 0.12);
+            setEnganche(selectedLote * 0.15);
             setMensualidades(
                 (
-                    (selectedLote - selectedLote * 0.12) /
+                    (selectedLote - selectedLote * 0.15) /
                     selectedMensualidad
                 ).toFixed(2)
             );
@@ -57,7 +57,7 @@ export const Cotizador = () => {
                 <a href="#contacto-section" className="button">
                     Precios desde $55,000
                 </a>
-                <h6>12% de enganche</h6>
+                <h6>15% de enganche</h6>
                 <p>
                     Financiamiento de 6, 12, 36 y{" "}
                     <b>
@@ -79,12 +79,12 @@ export const Cotizador = () => {
                             />
                         </div>
                         <div className="col-xs-10 col-sm-10 col-md-5 col-lg-5">
-                            <label>Enganche - 12%</label>
+                            <label>Enganche - 15%</label>
                             <input
                                 type="text"
                                 readOnly
                                 value={`${enganche}`}
-                                placeholder="12% Enganche"
+                                placeholder="15% Enganche"
                             />
                         </div>
                         <div className="col-xs-10 col-sm-10 col-md-5 col-lg-5">
