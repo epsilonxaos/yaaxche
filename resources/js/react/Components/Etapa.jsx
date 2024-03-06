@@ -12,7 +12,7 @@ export const Etapa = () => {
                 <h2>
                     El proyecto
                     <br />
-                    Etapa 1: Ya'axché porvenir
+                    Etapa 2: Ya'axché el resplandor
                 </h2>
                 <img src="/images/logo_oro.svg" alt="" />
                 <p>
