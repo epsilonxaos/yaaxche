@@ -8,36 +8,36 @@ export const Contact = () => {
     const [phone, setPhone] = useState("");
     const [city, setCity] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
-        try {
-            const response = await fetch("https://landing.grupols.mx/send", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: name,
-                    lastname: lastname,
-                    city: city,
-                    email: email,
-                    phone: phone,
-                }),
-            });
+    //     try {
+    //         const response = await fetch("https://landing.grupols.mx/send", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //                 name: name,
+    //                 lastname: lastname,
+    //                 city: city,
+    //                 email: email,
+    //                 phone: phone,
+    //             }),
+    //         });
 
-            if (response.ok) {
-                // La solicitud fue exitosa, puedes redirigir o manejar la respuesta
-                console.log("Solicitud enviada con éxito");
-                window.location.href = "https://landing.grupols.mx/enviado";
-            } else {
-                // Manejo de errores
-                console.error("Error al enviar la solicitud");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    };
+    //         if (response.ok) {
+    //             // La solicitud fue exitosa, puedes redirigir o manejar la respuesta
+    //             console.log("Solicitud enviada con éxito");
+    //             window.location.href = "/enviado";
+    //         } else {
+    //             // Manejo de errores
+    //             console.error("Error al enviar la solicitud");
+    //         }
+    //     } catch (error) {
+    //         console.error("Error:", error);
+    //     }
+    // };
     return (
         <div
             className="container-fluid contact-container"
