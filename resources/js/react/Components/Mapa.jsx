@@ -12,11 +12,11 @@ export const Mapa = () => {
                 lugares turísticos de la zona
             </h2>
             <img className="mapa" src="/images/mapa.png" alt="" />
-            <div className="video-container">
-                <img className="video" src="images/video.jpg" alt="" />
+            <div className="video-container !w-auto">
+                <img className="video" src="/images/video.jpg" alt="" />
                 <img
                     className="player"
-                    src="images/player.svg"
+                    src="/images/player.svg"
                     alt=""
                     onClick={() => setToggler(!toggler)}
                 />

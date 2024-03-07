@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-	return $request->user();
-});
+
 Route::get('/lotificacion', [AppController::class, 'lotificacion']);
+Route::post('/send', [AppController::class, 'send']);

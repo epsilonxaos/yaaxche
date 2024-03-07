@@ -15,7 +15,7 @@ export const Cotizador = () => {
     const [mensualidades, setMensualidades] = useState(0);
     const navigate = useNavigate();
     const handleLoteChange = (selectedOption) => {
-        setSelectedLote(selectedOption.value);
+        setSelectedLote(selectedOption);
     };
 
     const handleMensualidadChange = (selectedOptions) => {
@@ -24,7 +24,7 @@ export const Cotizador = () => {
 
     useEffect(() => {
         if (selectedLote != null && selectedMensualidad != null) {
-            const currentLote = datos.find((l) => l.lote == selectedLote);
+            const currentLote = datos.find((l) => l.lote == selectedLote.value);
             setEnganche(currentLote.precio_total * 0.15);
             setMensualidades(
                 (
@@ -66,6 +66,7 @@ export const Cotizador = () => {
                     currentLote.precio_total
                 )}`,
             });
+
             navigate("/#cotizador");
         }
     }, [lote]);
