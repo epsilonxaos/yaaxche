@@ -149,7 +149,7 @@ function FormContacto({
         axios
             .post(import.meta.env.VITE_APP_URL + "api/send", data)
             .then(function ({ data }) {
-                if (data.status == "success") callbackOnSuccess();
+                callbackOnSuccess();
             })
             .catch(function (error) {
                 console.log(error);
@@ -236,8 +236,8 @@ function FormContacto({
                     <span className="font-bold">¿Deseas continuar?</span>
                 </p>
             </div>
-            <div className="w-full text-center md:text-left lg:px-3">
-                <button type="submit" className="button">
+            <div className="w-full text-center lg:px-3">
+                <button type="submit" className="button mx-auto">
                     <img src="/images/amenidades/5.svg" alt="" />
                     Agendar Videollamada
                 </button>
@@ -268,7 +268,7 @@ function Input({
                 type="text"
                 {...(!validate && { name })}
                 id={name}
-                className={`bg-[#213229] bg-opacity-50 text-center text-crema px-6 w-full h-[50px] mb-0.5 rounded border-none ${
+                className={`bg-[#213229] bg-opacity-50 text-center !text-white px-6 w-full h-[50px] mb-0.5 rounded border-none ${
                     validateError &&
                     "bg-red-100 border-2 border-red-300 text-black"
                 } outline-none shadow-none`}
