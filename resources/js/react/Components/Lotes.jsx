@@ -5,6 +5,7 @@ import AppContext from "../context/AppContext";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import MasterplanMovil from "./MasterplanMovil";
+import { Link, useNavigate } from "react-router-dom";
 
 export function formatearComoMoneda(valor) {
     // Verificar si el valor es una cadena, si es así, convertirlo a número
@@ -25,8 +26,9 @@ export function formatearComoMoneda(valor) {
     }
 }
 
-export const Lotes = () => {
-    const { datos, setLote } = useContext(AppContext);
+export const Lotes = ({ isHome = true }) => {
+    const { datos, setLote, lote } = useContext(AppContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         datos.forEach((lt) => {
@@ -183,9 +185,9 @@ export const Lotes = () => {
 
     window.changeCurrentLote = (lote) => {
         window.loteActual = lote;
-
-        console.log({ lote });
         setLote(lote);
+
+        if (!isHome) navigate("/");
     };
 
     return (
@@ -196,10 +198,17 @@ export const Lotes = () => {
                     Entrega <br />
                     2027
                 </h2>
-                <a className="button" href="#contacto-section">
-                    <img src="/images/amenidades/5.svg" alt="" />
-                    Agendar videollamada
-                </a>
+                {isHome ? (
+                    <a className="button" href="#contacto-section">
+                        <img src="/images/amenidades/5.svg" alt="Icono" />
+                        Agendar videollamada
+                    </a>
+                ) : (
+                    <Link className="button" to={"/#contacto-section"}>
+                        <img src="/images/amenidades/5.svg" alt="Icono" />
+                        Agendar videollamada
+                    </Link>
+                )}
             </div>
 
             {/* Masterplan */}

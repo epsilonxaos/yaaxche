@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import ScrollToTop from "./Components/ScrollToTop";
+import Masterplan from "./Pages/Masterplan";
 
 function App() {
     const [datos, setDatos] = useState([]);
@@ -30,8 +31,9 @@ function App() {
         <AppContext.Provider value={{ datos, lote, setLote }}>
             <ScrollToTop />
             <Routes>
-                <Route path="/" element={<Homepage />} />
+                <Route path="/" index element={<Homepage />} />
                 <Route path="/enviado" element={<Enviado />} />
+                <Route path="/masterplan" element={<Masterplan />} />
             </Routes>
         </AppContext.Provider>
     );
