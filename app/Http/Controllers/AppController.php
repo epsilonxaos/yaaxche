@@ -18,11 +18,11 @@ class AppController extends Controller
 	public function send(Request $request)
 	{
 		$datosWebhook = [
-			'name' => $request->name,
-			'lastname' => $request->lastname,
-			'email' => $request->email,
-			'city' => $request->city,
-			'phone' => $request->phone,
+			'name' => $request->nombre,
+			'lastname' => $request->apellido,
+			'email' => $request->correo,
+			'city' => $request->ciudad,
+			'phone' => $request->telefono,
 		];
 
 		try {
