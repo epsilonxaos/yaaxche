@@ -1,66 +1,98 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Oliva
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Requerimientos
 
-## About Laravel
+Por preferencia y comodidad se usa la herramienta de [Wamp.net](https://wamp.net/) para gestionar todo el apartado de php y apache, en caso de usar otras herramientas como Xampp, Mamp, etc., se debera realizar las configuraciones necesarias para la **Configuración de sitio**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Php >= 8.1.x
+2. Apache >= 2.4..x
+3. Composer >= 2.5
+4. Node >= 18.x
+5. Npm >= 9.8.x
+6. MySql
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Comienzos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Instalación
 
-## Learning Laravel
+Ejecutar los siguientes comandos:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+`composer install`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+`cp .env.example .env`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`php artisan key:generate`
 
-## Laravel Sponsors
+`npm install`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Configuración de sitio
 
-### Premium Partners
+> :warning: **Warning:** _Configuración para Wamp.net_
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+1. Ingresar en el menú a _Sites_
+2. Presionar boton _Create Site_
+3. Ingresar los siguientes datos
+    - **Domain Name:** Direccion del proyecto local (Predeterminado: sitio.dev)
+    - **Domain Aliases:** www
+    - **Document root:** Ruta en donde se encuentra el proyecto, debe apuntar a la carpeta _site/public_
+    - **DataBase:** Mysql
+    - **Web Server:** Apache
+    - **Php version:** php >= 8.1.x <br>
 
-## Contributing
+#### Configurar Base de datos
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Crear una base de datos y configurar los siguientes parametros:
 
-## Code of Conduct
+```
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
 
-## Security Vulnerabilities
+Ejeuctar los siguientes comandos, estos cargaran las tablas y valores iniciales
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Crea las tablas
+`php artisan migrate`
 
-## License
+Ingresa datos iniciales a las tablas
+`php artisan db:seed`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Para obtener informacion sobre el usuario admin inicial, revisar el archivo AdminSeeder en Database > Seeder
+
+#### Configurar los siguientes parametros **.env**
+
+Ejemplo:
+
+```
+APP_URL=https://host.mx/
+
+SERVER_HOST=host.mx
+SERVER_HTTPS_KEY=file.key
+SERVER_HTTPS_CERT/file.crt
+
+DB_CONNECTION=mysql
+DB_HOST= //Colocar host
+DB_PORT= // Colocar puerto
+DB_DATABASE=database
+DB_USERNAME= //Colocar usuario
+DB_PASSWORD=//Colocar contraseña
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=3b8cf6fa23b356
+MAIL_PASSWORD=e47cc8718a034c
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="email@send.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+
+```
+
+Finalmente ejcutar el comando
+
+-   `npm run dev`: Compilación modo desarrollo _habilita el WS de vite_
+-   `npm run build`: Compilación modo producción _generá los archivos necesarios del servidor_
