@@ -203,7 +203,7 @@ export const Etapa = () => {
             </div>
             <div className="sub-info">
                 <p>
-                    Precios desde <b>$55,000</b> | Espacios desde <b>200 M2</b>
+                    Precios desde <b>$61,250</b> | Espacios desde <b>200 M2</b>
                 </p>
                 <a href="#contacto-section" className="button">
                     Descargar Brochure
