@@ -10,7 +10,7 @@ export const Home = () => {
                     Yucatán.
                 </h1>
                 <p>Rodeada de sostenibilidad y exclusividad</p>
-                <p className="price">Precios desde $61,250</p>
+                <p className="price">Precios desde $90,200</p>
             </div>
             <a className="schedule button" href="#contacto-section">
                 <img src="/images/amenidades/5.svg" alt="" />
