@@ -94,7 +94,7 @@ export const Cotizador = () => {
                 <img src="/images/amenidades/4.svg" alt="" />
                 <h2>Financiamiento directo con nosotros</h2>
                 <a href="#contacto-section" className="button">
-                    Precios desde $61,250
+                    Precios desde $90,200
                 </a>
                 <h6>15% de enganche</h6>
                 <p>
