@@ -26,6 +26,8 @@ class ModalMasterplan extends Component
 	public $precio6 = 0;
 	public $contado = 0;
 	public $apartado = 0;
+	public $manzana = 0;
+	public $precio_m2 = 0;
 
 	#[On('open-modal')]
 	public function open($data)
@@ -46,6 +48,8 @@ class ModalMasterplan extends Component
 		$this->precio6 = $data['precio_6'];
 		$this->contado = $data['contado'];
 		$this->apartado = $data['apartado'];
+		$this->manzana = $data['manzana'];
+		$this->precio_m2 = $data['precio_m2'];
 
 
 		$this->open = true;
@@ -69,6 +73,8 @@ class ModalMasterplan extends Component
 		$upd->precio_6 = $this->precio6;
 		$upd->contado = $this->contado;
 		$upd->apartado = $this->apartado;
+		$upd->manzana = $this->manzana;
+		$upd->precio_m2 = $this->precio_m2;
 		$upd->save();
 
 		flash()->addSuccess('Datos actualizados');

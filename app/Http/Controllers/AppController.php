@@ -11,7 +11,7 @@ class AppController extends Controller
 {
 	public function lotificacion()
 	{
-		$datos  = Lotificacion::all();
+		$datos  = Lotificacion::where('etapa', 3)->get();
 		return response($datos, 200);
 	}
 

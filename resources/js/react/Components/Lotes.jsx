@@ -7,6 +7,9 @@ import "tippy.js/dist/tippy.css";
 import MasterplanMovil from "./MasterplanMovil";
 import { Link, useNavigate } from "react-router-dom";
 
+import masterplanEtapa3 from "../assets/etapa3/escritorio.png";
+import masterplanEtapa3Movil from "../assets/etapa3/movil.jpeg";
+
 export function formatearComoMoneda(valor) {
     // Verificar si el valor es una cadena, si es así, convertirlo a número
     if (typeof valor === "string") {
@@ -192,7 +195,7 @@ export const Lotes = ({ isHome = true }) => {
 
     return (
         <div className="container-fluid lotes-container bg-[#374c1a] pb-0 md:pt-0">
-            <div className="info-container absolute z-10 md:w-[80%] flex items-center justify-center flex-col max-md:mx-auto max-md:mb-5 bg-transparent md:max-w-[360px] max-md:pt-10 max-md:w-full md:top-0 md:bottom-0 md:my-auto">
+            {/* <div className="info-container absolute z-10 md:w-[80%] flex items-center justify-center flex-col max-md:mx-auto max-md:mb-5 bg-transparent md:max-w-[360px] max-md:pt-10 max-md:w-full md:top-0 md:bottom-0 md:my-auto">
                 <img src="/images/logo_cafe.svg" alt="" />
                 <h2>
                     Entrega <br />
@@ -209,26 +212,26 @@ export const Lotes = ({ isHome = true }) => {
                         Agendar videollamada
                     </Link>
                 )}
-            </div>
+            </div> */}
 
             {/* Masterplan */}
             <div className="relative md:block hidden" id="masterplan">
                 <img
-                    src="/images/masterplan.webp"
+                    src={masterplanEtapa3}
                     alt="masterplan"
                     className="w-full"
                 />
-                <Masterplan />
+                {/* <Masterplan /> */}
                 <LeyendaUI />
             </div>
 
             <div className="relative md:hidden" id="masterplan2">
                 <img
-                    src="/images/masterplanmovil.png"
+                    src={masterplanEtapa3Movil}
                     alt="masterplan"
                     className="w-full"
                 />
-                <MasterplanMovil />
+                {/* <MasterplanMovil /> */}
                 <LeyendaUI />
             </div>
         </div>

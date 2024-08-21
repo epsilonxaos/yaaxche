@@ -28,5 +28,7 @@ class Lotificacion extends Model
 		'precio_6',
 		'contado',
 		'apartado',
+		'manzana',
+		'precio_m2',
 	];
 }
