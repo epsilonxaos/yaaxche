@@ -11,7 +11,10 @@ const Plantilla = ({ lote = [] }) => {
             <h2 className="text-base font-medium">Lote #{lote.lote}</h2>
 
             <p className="text-sm mb-0">
-                {formatearComoMoneda(lote.precio_total)} MXN
+                {formatearComoMoneda(
+                    lote.precio_total * 0.1 + lote.precio_total
+                )}{" "}
+                MXN
             </p>
             <p className="text-sm mb-0">
                 ${lote.m2} m<sup>2</sup>

@@ -57,7 +57,7 @@ export const Cotizador = () => {
                     loteFormatted.push({
                         value: lote.lote,
                         label: `Lote #${lote.lote} - ${formatearComoMoneda(
-                            lote.precio_total
+                            lote.precio_total * 0.1 + lote.precio_total
                         )}`,
                     });
                 }
@@ -106,7 +106,7 @@ export const Cotizador = () => {
                 <a href="#contacto-section" className="button">
                     Precios desde $90,200
                 </a>
-                <h6>15% de enganche</h6>
+                <h6>16% de enganche</h6>
                 <p>
                     Financiamiento de 6, 12, 36 y{" "}
                     <b>
