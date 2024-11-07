@@ -27,6 +27,8 @@ export const Cotizador = () => {
     useEffect(() => {
         if (selectedLote != null && selectedMensualidad != null) {
             const currentLote = datos.find((l) => l.lote == selectedLote.value);
+            currentLote.precio_total =
+                currentLote.precio_total * 0.1 + currentLote.precio_total;
             setEnganche(currentLote.precio_total * enganchePorcentaje);
             setMensualidades(
                 (
@@ -127,12 +129,12 @@ export const Cotizador = () => {
                             />
                         </div>
                         <div className="col-xs-10 col-sm-10 col-md-5 col-lg-5">
-                            <label>Enganche - 15%</label>
+                            <label>Enganche - 16%</label>
                             <input
                                 type="text"
                                 readOnly
                                 value={`${formatearComoMoneda(enganche)}`}
-                                placeholder="15% Enganche"
+                                placeholder="16% Enganche"
                             />
                         </div>
                         <div className="col-xs-10 col-sm-10 col-md-5 col-lg-5">
