@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import Masterplan from "./Masterplan";
+// import Masterplan from "./Masterplan";
 import AppContext from "../context/AppContext";
 
 import tippy from "tippy.js";
@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import masterplanEtapa3 from "../assets/etapa3/escritorio.png";
 import masterplanEtapa3Movil from "../assets/etapa3/movil.jpeg";
+import Masterplan from "./masterplan/Masterplan";
+import { useMediaQuery } from "react-responsive";
 
 export function formatearComoMoneda(valor) {
     // Verificar si el valor es una cadena, si es así, convertirlo a número
@@ -33,165 +35,7 @@ export const Lotes = ({ isHome = true }) => {
     const { datos, setLote, lote } = useContext(AppContext);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        datos.forEach((lt) => {
-            let dom = document.querySelectorAll(`.lote${lt.lote} .st0`);
-
-            if (dom) {
-                dom.forEach((el) => {
-                    if (lt.status == 1) el.classList.add("disponible");
-                    else if (lt.status == 2) el.classList.add("apartado");
-                    else el.classList.add("vendido");
-                });
-            }
-        });
-
-        datos.forEach((lt) => {
-            let dom = document.querySelector(
-                `#masterplan .lote${lt.lote} .st0`
-            );
-
-            if (dom) {
-                if (lt.status == 1) dom.classList.add("disponible");
-                else if (lt.status == 2) dom.classList.add("apartado");
-                else dom.classList.add("vendido");
-
-                tippy(dom, {
-                    aria: null,
-                    // trigger: "click",
-                    // Important: the tooltip should be DIRECTLY after the reference element
-                    // in the DOM source order, which is why it has its own wrapper element
-                    appendTo: document.getElementById("masterplan"),
-                    // Let the user know the dropdown has been expanded using these lifecycle
-                    // functions
-                    onMount({ reference }) {
-                        reference.setAttribute("aria-expanded", "true");
-                    },
-                    onHide({ reference }) {
-                        reference.setAttribute("aria-expanded", "false");
-                    },
-                    interactive: true,
-                    allowHTML: true,
-                    content: `<div
-					class="shadow-sm bg-white pr-3 pl-0 flex"
-				>
-					<div class="${
-                        lt.status == 1
-                            ? "disponible"
-                            : lt.status == 2
-                            ? "apartado"
-                            : "vendido"
-                    } h-[105px] w-3 "></div>
-					<div class="px-3 py-1 font-mark text-verde">
-						<h5 class="font-bold">
-							Lote #${lt.lote}
-						</h5>
-						<p class="text-sm mb-0">
-							${formatearComoMoneda(lt.precio_total)} MXN
-						</p>
-						<p class="text-sm mb-0">
-							${lt.m2} m<sup>2</sup>
-						</p>
-						<p class="text-sm  mb-2">${
-                            lt.status == 1
-                                ? "Disponible"
-                                : lt.status == 2
-                                ? "Apartado"
-                                : "Vendido"
-                        }</p>
-						${
-                            lt.status == 1
-                                ? `<button
-									class="bg-[#b68401] text-white py-1 px-2 w-full rounded-sm"
-									type="button"
-									onClick="changeCurrentLote(${lt.lote})"
-								>
-									Cotizar
-								</button>`
-                                : ""
-                        }
-					</div>
-				</div>`,
-                });
-            }
-        });
-        datos.forEach((lt) => {
-            let dom = document.querySelector(
-                `#masterplan2 .lote${lt.lote} .st0`
-            );
-
-            if (dom) {
-                if (lt.status == 1) dom.classList.add("disponible");
-                else if (lt.status == 2) dom.classList.add("apartado");
-                else dom.classList.add("vendido");
-
-                tippy(dom, {
-                    aria: null,
-                    // trigger: "click",
-                    // Important: the tooltip should be DIRECTLY after the reference element
-                    // in the DOM source order, which is why it has its own wrapper element
-                    appendTo: document.getElementById("masterplan2"),
-                    // Let the user know the dropdown has been expanded using these lifecycle
-                    // functions
-                    onMount({ reference }) {
-                        reference.setAttribute("aria-expanded", "true");
-                    },
-                    onHide({ reference }) {
-                        reference.setAttribute("aria-expanded", "false");
-                    },
-                    interactive: true,
-                    allowHTML: true,
-                    content: `<div
-					class="shadow-sm bg-white pr-3 pl-0 flex"
-				>
-					<div class="${
-                        lt.status == 1
-                            ? "disponible"
-                            : lt.status == 2
-                            ? "apartado"
-                            : "vendido"
-                    } h-[105px] w-3 "></div>
-					<div class="px-3 py-1 font-mark text-verde">
-						<h5 class="font-bold">
-							Lote #${lt.lote}
-						</h5>
-						<p class="text-sm mb-0">
-							${formatearComoMoneda(lt.precio_total)} MXN
-						</p>
-						<p class="text-sm mb-0">
-							${lt.m2} m<sup>2</sup>
-						</p>
-						<p class="text-sm  mb-2">${
-                            lt.status == 1
-                                ? "Disponible"
-                                : lt.status == 2
-                                ? "Apartado"
-                                : "Vendido"
-                        }</p>
-						${
-                            lt.status == 1
-                                ? `<button
-									class="bg-[#b68401] text-white py-1 px-2 w-full rounded-sm"
-									type="button"
-									onClick="changeCurrentLote(${lt.lote})"
-								>
-									Cotizar
-								</button>`
-                                : ""
-                        }
-					</div>
-				</div>`,
-                });
-            }
-        });
-    }, [datos]);
-
-    window.changeCurrentLote = (lote) => {
-        window.loteActual = lote;
-        setLote(lote);
-
-        if (!isHome) navigate("/");
-    };
+    const isDesktopOrTablet = useMediaQuery({ query: "(min-width: 768px)" });
 
     return (
         <div className="container-fluid lotes-container bg-[#374c1a] pb-0 md:pt-0">
@@ -215,23 +59,21 @@ export const Lotes = ({ isHome = true }) => {
             </div> */}
 
             {/* Masterplan */}
-            <div className="relative md:block hidden" id="masterplan">
-                <img
-                    src={masterplanEtapa3}
-                    alt="masterplan"
-                    className="w-full"
-                />
-                {/* <Masterplan /> */}
-                <LeyendaUI />
-            </div>
-
-            <div className="relative md:hidden" id="masterplan2">
-                <img
-                    src={masterplanEtapa3Movil}
-                    alt="masterplan"
-                    className="w-full"
-                />
-                {/* <MasterplanMovil /> */}
+            <div className="relative " id="masterplan">
+                {isDesktopOrTablet ? (
+                    <img
+                        src={masterplanEtapa3}
+                        alt="masterplan"
+                        className="w-full"
+                    />
+                ) : (
+                    <img
+                        src={masterplanEtapa3Movil}
+                        alt="masterplan"
+                        className="w-full"
+                    />
+                )}
+                <Masterplan />
                 <LeyendaUI />
             </div>
         </div>

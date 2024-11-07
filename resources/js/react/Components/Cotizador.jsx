@@ -5,11 +5,13 @@ import AppContext from "../context/AppContext";
 import { formatearComoMoneda } from "./Lotes";
 import { useNavigate } from "react-router-dom";
 
+const enganchePorcentaje = 0.16;
+
 export const Cotizador = () => {
     const [selectedLote, setSelectedLote] = useState(null);
     const [selectedMensualidad, setSelectedMensualidad] = useState(null);
     const [dataLote, setDataLote] = useState([]);
-    const { datos, lote } = useContext(AppContext);
+    const { datos, lote, setLote } = useContext(AppContext);
 
     const [enganche, setEnganche] = useState(0);
     const [mensualidades, setMensualidades] = useState(0);
@@ -25,11 +27,11 @@ export const Cotizador = () => {
     useEffect(() => {
         if (selectedLote != null && selectedMensualidad != null) {
             const currentLote = datos.find((l) => l.lote == selectedLote.value);
-            setEnganche(currentLote.precio_total * 0.15);
+            setEnganche(currentLote.precio_total * enganchePorcentaje);
             setMensualidades(
                 (
                     (currentLote.precio_total -
-                        currentLote.precio_total * 0.15) /
+                        currentLote.precio_total * enganchePorcentaje) /
                     selectedMensualidad
                 ).toFixed(2)
             );
@@ -38,6 +40,12 @@ export const Cotizador = () => {
             setMensualidades(0);
         }
     }, [selectedLote, selectedMensualidad]);
+
+    useEffect(() => {
+        if (selectedLote) {
+            setLote(selectedLote.value);
+        }
+    }, [selectedLote]);
 
     useEffect(() => {
         if (datos.length) {

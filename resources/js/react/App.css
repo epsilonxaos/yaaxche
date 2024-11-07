@@ -721,23 +721,28 @@ h6 {
     color: white;
 }
 
-.st0 {
-    fill: #cecece;
+.path {
+    fill: transparent;
 }
 
-.st0.vendido {
+.path.vendido {
     fill: #bd0000a1;
     cursor: auto;
 }
-.st0.apartado {
+.path.apartado {
     fill: #bd9a009a;
     cursor: auto;
 }
-.st0.disponible {
+.path.disponible {
     fill: #0b952d86;
     cursor: pointer;
 }
-.st0.area-verde {
+.path.select {
+    fill: #2097e686;
+    cursor: pointer;
+    stroke: #2097e6;
+}
+.path.area-verde {
     fill: #0b3a17;
 }
 

@@ -6,8 +6,8 @@ export const Home = () => {
             <div className="info">
                 <img src="/images/logo_blanco.png" alt="" />
                 <h1>
-                    Lotes de inversión con amenidades premium en Dzidzantún,
-                    Yucatán.
+                    Lotes patrimoniales con amenidades premium en Dzidzantún,
+                    Yucatán
                 </h1>
                 <p>Rodeada de sostenibilidad y exclusividad</p>
                 <p className="price">Precios desde $90,200</p>
