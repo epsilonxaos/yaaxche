@@ -27,8 +27,7 @@ export const Cotizador = () => {
     useEffect(() => {
         if (selectedLote != null && selectedMensualidad != null) {
             const currentLote = datos.find((l) => l.lote == selectedLote.value);
-            currentLote.precio_total =
-                currentLote.precio_total * 0.1 + currentLote.precio_total;
+
             setEnganche(currentLote.precio_total * enganchePorcentaje);
             setMensualidades(
                 (
@@ -57,7 +56,7 @@ export const Cotizador = () => {
                     loteFormatted.push({
                         value: lote.lote,
                         label: `Lote #${lote.lote} - ${formatearComoMoneda(
-                            lote.precio_total * 0.1 + lote.precio_total
+                            lote.precio_total
                         )}`,
                     });
                 }
